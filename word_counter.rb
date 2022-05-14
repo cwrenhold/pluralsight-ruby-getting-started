@@ -3,6 +3,9 @@ TEXT_FILE = "romeo-juliet.txt"
 # Load the words from a file
 def words_from_file(text_file)
     File.read(text_file).downcase.gsub(/[^a-z]/, " ").split
+rescue # If you put an error type here, you can name that after "rescue"
+    puts "Give me #{text_file} and let's get this party started!"
+    exit
 end
 
 # Load the list of worsd in the text
