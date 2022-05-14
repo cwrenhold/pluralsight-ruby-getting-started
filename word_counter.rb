@@ -12,16 +12,20 @@ end
 words = words_from_file TEXT_FILE
 
 # Create a dictionary of word counts
-word_count = {}
+WORD_COUNT = {} # This is a constant so that it is available in the REPL after importing with require
 words.each do |word|
-    # if word_count[word] == nil
-    #     # If this word is new, add it to word_count and set the count to 0
-    #     word_count[word] = 0
+    # if WORD_COUNT[word] == nil
+    #     # If this word is new, add it to WORD_COUNT and set the count to 0
+    #     WORD_COUNT[word] = 0
     # end
 
-    # Set the count to 0 unless the word_count already contains word
-    word_count[word] = 0 unless word_count[word]
+    # Set the count to 0 unless the WORD_COUNT already contains word
+    WORD_COUNT[word] = 0 unless WORD_COUNT[word]
 
     # Increment the counter
-    word_count[word] += 1
+    WORD_COUNT[word] += 1
 end
+
+WORD_COUNT.sort_by {|word, count| count }
+          .reverse[0..40]
+          .each {|word, count| puts "#{word}: #{count}"}
