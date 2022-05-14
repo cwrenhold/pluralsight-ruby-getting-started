@@ -1,4 +1,5 @@
 TEXT_FILE = "romeo-juliet.txt"
+COMPARISON_TEXT_FILE = "hamlet.txt"
 
 # Load the words from a file
 def words_from_file(text_file)
@@ -8,17 +9,20 @@ rescue # If you put an error type here, you can name that after "rescue"
     exit
 end
 
-# Load the list of worsd in the text
+# Load the list of words in the text
 words = words_from_file TEXT_FILE
+
+# Load the comparison text and remove duplicate words
+words_to_remove = words_from_file(COMPARISON_TEXT_FILE).uniq
+
+# Remove any of the words in the comparison text from the words array
+words_to_remove.each do |word|
+    words.delete word
+end
 
 # Create a dictionary of word counts
 WORD_COUNT = {} # This is a constant so that it is available in the REPL after importing with require
 words.each do |word|
-    # if WORD_COUNT[word] == nil
-    #     # If this word is new, add it to WORD_COUNT and set the count to 0
-    #     WORD_COUNT[word] = 0
-    # end
-
     # Set the count to 0 unless the WORD_COUNT already contains word
     WORD_COUNT[word] = 0 unless WORD_COUNT[word]
 
